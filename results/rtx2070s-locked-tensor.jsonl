@@ -1,0 +1,8 @@
+{"gpu":"NVIDIA GeForce RTX 2070 SUPER","bdf":"0000:01:00.0","sms":40,"sm":75,"driver_api":13030,"threads_per_block":1024,"rounds":2048,"reported_clock_khz":1905000}
+{"test":"mma_f16_acc_fp32","sample":0,"ms":10.591360,"tflops":32.4423,"median_sm_cycles":16788012,"flops_per_sm_cycle":511.6864,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":1,"ms":10.590784,"tflops":32.4440,"median_sm_cycles":16788085,"flops_per_sm_cycle":511.6841,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":2,"ms":10.590880,"tflops":32.4437,"median_sm_cycles":16788177,"flops_per_sm_cycle":511.6813,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":3,"ms":10.590240,"tflops":32.4457,"median_sm_cycles":16788255,"flops_per_sm_cycle":511.6790,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":4,"ms":10.593184,"tflops":32.4367,"median_sm_cycles":16788274,"flops_per_sm_cycle":511.6784,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":5,"ms":10.592960,"tflops":32.4374,"median_sm_cycles":16788332,"flops_per_sm_cycle":511.6766,"max_abs_error":0.0,"unique_sms":40}
+{"test":"mma_f16_acc_fp32","sample":6,"ms":10.590272,"tflops":32.4456,"median_sm_cycles":16788141,"flops_per_sm_cycle":511.6824,"max_abs_error":0.0,"unique_sms":40}

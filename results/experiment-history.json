@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "scope": "Sanitized decision trail; private logs are identified by SHA-256 but not redistributed",
+  "current_head_reproducibility": {
+    "buildable_stages": [
+      "0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0", "0.6.1",
+      "0.6.2", "0.6.3", "0.6.4", "0.6.7", "0.7.1", "0.7.2",
+      "0.8.0"
+    ],
+    "log_hash_only_historical_stages": ["0.6.5", "0.6.6", "0.7.0"],
+    "reason": "These three source revisions were superseded before this workspace had version-control history; the known-bad 0.7.0 active path is intentionally not reintroduced"
+  },
+  "events": [
+    {
+      "version": "0.6.2-HIGH-DMA-MAP-PROBE",
+      "outcome": "safe_pre_mutation_unsupported",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "af364bdda5b9f4bdbe20d7cc65679802039bb2ce7ac32be801fb284f9260afda",
+      "finding": "32 MiB host allocation at 0x86c000000 mapped to low bounced device address 0x84dee000; identity=0 and device_above4G=0",
+      "decision": "Do not use the EFI Map result as a direct-high-DMA path; inspect platform state and require separate proof"
+    },
+    {
+      "version": "0.7.0-FWSEC-FRTS-ACTIVE",
+      "outcome": "pre_mutation_guard_refusal",
+      "efi_status": "Security Policy Violation",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "21e387c6ee56206d7628ecf5cd98d1b86e50ecb3ee46f2ed0e2140433803295c",
+      "finding": "Physical U confirmation succeeded, but the real core stopped in GUARDS before reset/write; intermediate Success was not FRTS success",
+      "decision": "Do not retry; reproduce the exact boundary with read-only per-guard tracing"
+    },
+    {
+      "version": "0.6.5-FWSEC-GUARD-READONLY",
+      "outcome": "success_but_inconclusive",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "97e3a0b67bdb989f6b13c105c3e2b9e874a5c5ec17fc1f709fcd35be8c5d3f27",
+      "finding": "All 10197 idle/pre-confirmation comparisons matched",
+      "decision": "Replay the physical-confirmation/watchdog boundary rather than treating the earlier snapshot as dispositive"
+    },
+    {
+      "version": "0.6.6-FWSEC-GUARD-REPLAY",
+      "outcome": "expected_read_only_guard_refusal",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "56add48627b1d12cf9edac694acea5f6803b690d7365a72c04fe8274ac4760dc",
+      "finding": "SEC2 DMACTL read 32 observed 0x7 instead of 0x1; changed mask 0x6 was documented IMEM/DMEM scrubbing status",
+      "decision": "Test a bounded read-only scrub wait; never mask unrelated changes or write DMACTL"
+    },
+    {
+      "version": "0.6.7-FWSEC-SCRUB-WAIT",
+      "outcome": "two_read_only_successes",
+      "gpu_write_attempted": false,
+      "evidence_sha256": [
+        "0761263ad389b95f5ca1f630b8a385bef38cff466a69f97b72ae6e5d9ae64b69",
+        "e1adab2c1826b33e82084f3cedb32182f8703d77db07af681d8ea1dd099fa0da"
+      ],
+      "finding": "Both runs changed from DMACTL 0x7 to exact stable 0x1 after one 1 ms delay; all 10197 real guard reads then passed",
+      "decision": "Integrate the exact bounded wait into a new active FRTS image"
+    },
+    {
+      "version": "0.7.1-FWSEC-FRTS-SCRUB-WAIT",
+      "outcome": "native_fwsec_frts_success",
+      "gpu_write_attempted": true,
+      "evidence_sha256": "a06cb805e73e6df095ffffe0c24750661f102bf83897e5f0685a9d74f274b5c6",
+      "finding": "All seven stages completed and exact WPR2 bounds LO=0x01ffee00 HI=0x01fffc00 were created",
+      "decision": "Prove same-boot OS handoff separately before combining with full unlock"
+    },
+    {
+      "version": "0.7.2-UBUNTU-HANDOFF-READONLY",
+      "outcome": "same_boot_handoff_success",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "9edb1796b4944119fc250a473da28e60854b837758c6803f1f04ac79e0ba0760",
+      "finding": "Exact GRUB and config were preloaded and Ubuntu reached the expected root in the same boot",
+      "decision": "Permit handoff only after exact completed/quiescent unlock success"
+    },
+    {
+      "version": "0.8.0-TU104-VOLATILE-UNLOCK-CANDIDATE",
+      "run": 1,
+      "outcome": "safe_timeout_before_mutation",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "0475e6dadbcbbbfd0f925111a16cd1868ab73934cc566224214d31ee8bf5d8ad",
+      "finding": "All pre-mutation integration checks passed, but no U key arrived within 30 seconds; pool released and firmware fallback booted Ubuntu",
+      "decision": "Classify as safe cancellation, not a failed active execution"
+    },
+    {
+      "version": "0.8.0-TU104-VOLATILE-UNLOCK-CANDIDATE",
+      "run": 2,
+      "outcome": "full_unlock_success",
+      "gpu_write_attempted": true,
+      "evidence_sha256": "6be6fbc7b08b428334acf7a40cd50fe47ed2aade4e7dca3042ce8e86075f6ea7",
+      "finding": "Exact selector/mailbox/stage/quiescence result, same-boot stock-driver handoff, and 1021.9858 FLOP/SM-cycle",
+      "decision": "Obtain a full-power-cycle locked same-board control and an independent second unlock"
+    },
+    {
+      "version": "LOCKED-CONTROL",
+      "outcome": "normal_cold_boot_baseline",
+      "gpu_write_attempted": false,
+      "evidence_sha256": "8ca5ea30de13b7c9052266aefb117c115b666a5a98cdc741af1d0f37bc4e5f38",
+      "finding": "32.4437 TFLOPS and 511.6813 FLOP/SM-cycle with USB physically absent",
+      "decision": "Compare with the same binary and then repeat the unlock from another full power cycle"
+    },
+    {
+      "version": "0.8.0-TU104-VOLATILE-UNLOCK-CANDIDATE",
+      "run": 3,
+      "outcome": "second_full_unlock_success",
+      "gpu_write_attempted": true,
+      "evidence_sha256": "9965b9586e817fd091bdc21b6e0a53adc4eef7590755bf7672ae24313ebb9896",
+      "finding": "Independent power-cycle reproduction with identical 1021.9858 FLOP/SM-cycle and no observed Xid/AER error",
+      "decision": "Preserve raw evidence, explicit failures, scope limits, and exact build/test inputs for publication"
+    }
+  ]
+}

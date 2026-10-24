@@ -1,0 +1,11 @@
+# Copy this file to config.local.mk. The local file is ignored by Git.
+# Never guess a block-device serial: inspect the mounted USB first.
+
+USB_MOUNT := /media/your-user/RTX2070S
+USB_SERIAL := REPLACE_WITH_THE_EXACT_REMOVABLE_DISK_SERIAL
+
+# Optional overrides when build inputs are already available elsewhere:
+# NVIDIA_GENERATED := /path/to/open-gpu-kernel-modules/src/nvidia/generated
+# V67_BINARY := /path/to/v67_payload.bin
+# BOOT_CONTAINER_BINARY := /path/to/gsp_rm_boot_dbg.bin
+# PROM_FIXTURE := /path/to/your-own-verified-512k-prom-capture.bin

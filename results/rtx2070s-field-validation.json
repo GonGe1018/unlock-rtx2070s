@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "scope": "Sanitized public record; complete UEFI logs and machine-private staging data are retained offline",
+  "target": {
+    "gpu": "NVIDIA GeForce RTX 2070 SUPER",
+    "architecture": "TU104 / SM75",
+    "pci_id": "10de:1e84",
+    "subsystem_id": "1458:3ff5",
+    "pci_bdf": "0000:01:00.0",
+    "vbios": "90.04.76.00.D5",
+    "streaming_multiprocessors": 40,
+    "motherboard": "MSI MPG Z390 GAMING EDGE AC / MS-7B17 / BIOS A.70",
+    "kernel": "7.0.0-38-generic",
+    "driver": "610.57.04"
+  },
+  "active_image": {
+    "version": "0.8.0-TU104-VOLATILE-UNLOCK-CANDIDATE",
+    "bytes": 389999,
+    "sha256": "053a587ec2127ce1471068eb1a370d97ae2295c56046d5a6d13d3251a54c535e",
+    "redistributed": false
+  },
+  "field_attempts": {
+    "safe_pre_write_timeout": 1,
+    "successful_independent_power_cycle_runs": 2,
+    "automatic_retries": 0,
+    "success_log_sha256": [
+      "6be6fbc7b08b428334acf7a40cd50fe47ed2aade4e7dca3042ce8e86075f6ea7",
+      "9965b9586e817fd091bdc21b6e0a53adc4eef7590755bf7672ae24313ebb9896"
+    ],
+    "terminal_state_each_success": {
+      "ss0": "0x88888888",
+      "ss1": "0x00000008",
+      "booter_mailbox0": "0x00000000",
+      "stage": 13,
+      "quiescent": true,
+      "pool_release": "success",
+      "same_boot_grub_handoff": "success"
+    }
+  },
+  "benchmark": {
+    "binary_sha256": "585accca9ed3959ccae3c11e50dcf6ea0a5cc447b123e31484f418df788a15dd",
+    "operation": "mma.sync.aligned.m16n8k8.row.col.f32.f16.f16.f32",
+    "reported_clock_khz_all_states": 1905000,
+    "samples_per_state": 7,
+    "locked": {
+      "median_tflops": 32.4437,
+      "median_flops_per_sm_cycle": 511.6813,
+      "raw": "results/rtx2070s-locked-tensor.jsonl",
+      "sha256": "8ca5ea30de13b7c9052266aefb117c115b666a5a98cdc741af1d0f37bc4e5f38"
+    },
+    "unlocked_run_1": {
+      "median_tflops": 65.1408,
+      "median_flops_per_sm_cycle": 1021.9858,
+      "raw": "results/rtx2070s-unlocked-tensor-run1.jsonl",
+      "sha256": "b63c7cf5cb34fbbc2cfbb50ae39f2c7f349d994aaff7363c1a79fdd332a17d84"
+    },
+    "unlocked_run_2": {
+      "median_tflops": 64.5049,
+      "median_flops_per_sm_cycle": 1021.9858,
+      "raw": "results/rtx2070s-unlocked-tensor-run2.jsonl",
+      "sha256": "e4e5e45a2b844801d63545342081458e49e25b04bf686f769e79256bddd8405f"
+    },
+    "unlocked_run_1_over_locked_tflops": 2.00781045,
+    "unlocked_run_1_over_locked_flops_per_sm_cycle": 1.99730926,
+    "all_21_samples_max_abs_error": 0.0,
+    "all_21_samples_unique_sms": 40
+  },
+  "cublas_gemm": {
+    "binary_bytes": 25928,
+    "binary_sha256": "0c6c5dd6e908e9e15d98baf7b74fa9f8c2d61f3a47a0dc85103081567853f580",
+    "runtime": {
+      "cublas_version": 120002,
+      "ubuntu_package": "libcublas12 12.0.2.224~12.0.1-4build4"
+    },
+    "operation": "cublasGemmEx square GEMM; FP16 inputs; FP32 output and accumulation",
+    "matrix_sizes": [4096, 8192],
+    "warmup_seconds_per_size": 2.0,
+    "batches_per_size": 7,
+    "operations_per_batch": 30,
+    "locked": {
+      "raw": "results/rtx2070s-locked-cublas.jsonl",
+      "sha256": "629d9e37f77c100f71d15792911321b6659254dd91bd27407baa15aa4224c9de",
+      "results": {
+        "4096": {
+          "median_ms": 3.515529,
+          "median_tflops": 39.094819
+        },
+        "8192": {
+          "median_ms": 27.603284,
+          "median_tflops": 39.832639
+        }
+      }
+    },
+    "unlocked": {
+      "raw": "results/rtx2070s-unlocked-cublas.jsonl",
+      "sha256": "f94acf774a2779624bee4e3f4e0485bcad6b52d6d83d7fa72e9ba50539d7356b",
+      "results": {
+        "4096": {
+          "median_ms": 2.155122,
+          "median_tflops": 63.773163
+        },
+        "8192": {
+          "median_ms": 16.741280,
+          "median_tflops": 65.676676
+        }
+      }
+    },
+    "unlocked_over_locked": {
+      "4096": 1.63124334,
+      "8192": 1.64881559
+    },
+    "sampled_outputs_per_size": 4,
+    "all_sampled_outputs_max_abs_error": 0.0
+  },
+  "post_run_health": {
+    "driver_initialized_each_run": true,
+    "display_active_each_run": true,
+    "nvidia_xid_errors": 0,
+    "pcie_aer_errors": 0
+  },
+  "conclusion": "Two independent power-cycle runs reproduced full-rate FP16-input/FP32-accumulation Tensor MMA on the exact tested board. A separate same-binary cuBLAS A/B measured 1.63x to 1.65x dense GEMM throughput. The result is benchmark- and target-specific."
+}

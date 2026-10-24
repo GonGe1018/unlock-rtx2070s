@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "inputs_redistributed": false,
+  "nvidia": {
+    "repository": "https://github.com/NVIDIA/open-gpu-kernel-modules",
+    "tag": "610.57.04",
+    "generated_sources": [
+      {
+        "file": "g_bindata_kgspGetBinArchiveBooterLoadUcode_TU102.c",
+        "sha256": "e495483adf66798502667da137c4a24c55f471b86f3183020e3169ff88ad6c89"
+      },
+      {
+        "file": "g_bindata_ksec2GetBinArchiveBlUcode_TU102.c",
+        "sha256": "fc0bc277eeee754ea3071ae0fe8360a52193565bba7c07dcea60b00e8d56d9c8"
+      },
+      {
+        "file": "g_bindata_kgspGetBinArchiveGspRmBoot_TU102.c",
+        "sha256": "19628e0b148a5437b351ce9ecd4a04405ec4eb66521e1c318ca6ef5d1a0c2efe"
+      }
+    ],
+    "verified_derived_assets": [
+      {"file": "booter_ucode_prod.bin", "bytes": 59136, "sha256": "e0f0fc93da097b5b68e5af3adb58b2235ed1fad5fce0b23592d3895af44cb743"},
+      {"file": "booter_header_prod.bin", "bytes": 36, "sha256": "be56c8c4c07dfd9a44e3d52c6d092ef2baacffa7303a16bc11f5f4a8485dd4d6"},
+      {"file": "booter_sig_prod.bin", "bytes": 16, "sha256": "eac2f717515ed7b336d2bd26215757d6ea73b87fdcfe09c67ceb07ae75a9c9b6"},
+      {"file": "booter_patch_loc.bin", "bytes": 4, "sha256": "67afaacd65d13ffecc00dcb47ecac2b278a575f4fc8a2109f756ae5004e72bfd"},
+      {"file": "booter_patch_meta.bin", "bytes": 12, "sha256": "bb1e37791d729f4e30f3d80e459779205111dd38250bc832d360b584804a3423"},
+      {"file": "bl_gsp_tu102.bin", "bytes": 768, "sha256": "f21f1cfbb8fffa8067685314367fc4c50f3f84dd99eda7c19db4292d9269b9d9"},
+      {"file": "gsp_rm_boot_tu102.bin", "bytes": 4096, "sha256": "8765694cd38beaa4e2b8b1b83a31fb7aee6cb9d8b7c6bc7a86e6d931a3a056c2"},
+      {"file": "gsp_rm_boot_tu102_desc.bin", "bytes": 76, "sha256": "9e7cca2cfdc5ce601b0adba39967850046108df6c2d23fff95578ca3f0ccbe01"}
+    ]
+  },
+  "unlock_lineage": {
+    "repository": "https://github.com/xrip/cmp50hx-unlock",
+    "commit": "df2fe11b370bb52cc314576d0f2f5ae47ce908f8",
+    "inputs": [
+      {"file": "efi-unlock/blobs/v67_payload.bin", "bytes": 64000, "sha256": "de7288bcfb80c2d4b259a59e823c926ba0a9adcab594219cc6802c94257ce271"},
+      {"file": "efi-unlock/blobs/gsp_rm_boot_dbg.bin", "bytes": 131072, "sha256": "fa43239bcee7b97ca62f007cc68487560a39e19f74f3dde7486db3f98df8e471"}
+    ]
+  },
+  "private_target_fixture": {
+    "description": "Two byte-identical 512 KiB PROM captures from the tested card",
+    "bytes": 524288,
+    "sha256": "df1b9144a31dda10e0b2ae65ecf80af6e1a0b5bf23981a98884159df5af7b9cc",
+    "redistributed": false
+  }
+}

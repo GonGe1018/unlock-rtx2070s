@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-25",
+  "scope": "Local publication preparation; no new live GPU mutation during these checks",
+  "external_input_fetch": "all exact source/blob hashes verified",
+  "public_offline_suite": {
+    "source_audits": "passed",
+    "c_tests": {
+      "profile": 16,
+      "option_rom": 8,
+      "pci_bar": 9,
+      "dma_policy": 23,
+      "platform_dma_policy": 30,
+      "falcon_profile": 38,
+      "fwsec_lifecycle": 17,
+      "unlock_layout": 9,
+      "unlock_lifecycle": 259,
+      "ubuntu_handoff": 7,
+      "fwsec_loader": "passed"
+    },
+    "python_tests": 17,
+    "hardware_access": false
+  },
+  "public_result_verifier": {
+    "checked_raw_jsonl_files": 5,
+    "checked_tensor_samples": 21,
+    "checked_cublas_timing_batches": 28,
+    "sha256_checks": "passed",
+    "metadata_and_sample_order": "passed",
+    "median_and_ratio_recomputation": "passed",
+    "zero_error_tensor_and_bounded_cublas_checks": "passed",
+    "tensor_40_sm_coverage": "passed",
+    "modified_sample_rejection_test": "passed"
+  },
+  "failure_history": {
+    "sanitized_events": 11,
+    "private_logs_redistributed": false,
+    "private_logs_identified_by_sha256": true,
+    "each_refusal_or_inconclusive_step_links_to_next_decision": true
+  },
+  "private_full_suite": {
+    "frts_core_cases": 10460,
+    "full_unlock_core_cases": 15163,
+    "all_success_path_io_and_event_boundaries_injected": true,
+    "hardware_access": false
+  },
+  "forced_active_rebuild": {
+    "passed": true,
+    "bytes": 389999,
+    "sha256": "053a587ec2127ce1471068eb1a370d97ae2295c56046d5a6d13d3251a54c535e",
+    "matches_field_tested_image": true,
+    "pe32_plus_x86_64_efi": true,
+    "imports": 0,
+    "five_embedded_assets_byte_exact": true
+  },
+  "excluded_from_publication": [
+    "build outputs and prebuilt EFI",
+    "raw GPU ROM and PROM captures",
+    "full private firmware logs and staging records",
+    "external reference repositories and fetched binary inputs",
+    "machine-local USB serial configuration"
+  ],
+  "project_license": {
+    "spdx_id": "MIT",
+    "file": "LICENSE",
+    "scope": "Original contributions; existing third-party terms remain applicable"
+  },
+  "remaining_publication_gate": null
+}

@@ -1,0 +1,19 @@
+{"schema":"rtx2070s-cublas-gemm/1","label":"locked","gpu":"NVIDIA GeForce RTX 2070 SUPER","bdf":"0000:01:00.0","sms":40,"sm":75,"driver_api":13030,"cublas_version":120002,"reported_clock_khz":1905000,"input":"FP16","output":"FP32","accumulation":"FP32","warmup_seconds":2.0,"batches":7,"operations_per_batch":30}
+{"phase":"warmup","n":4096,"operations":547,"elapsed_s":2.003165}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":0,"operations":30,"ms_per_gemm":3.516468,"tflops":39.084371}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":1,"operations":30,"ms_per_gemm":3.515309,"tflops":39.097262}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":2,"operations":30,"ms_per_gemm":3.515488,"tflops":39.095271}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":3,"operations":30,"ms_per_gemm":3.515896,"tflops":39.090738}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":4,"operations":30,"ms_per_gemm":3.515586,"tflops":39.094179}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":5,"operations":30,"ms_per_gemm":3.515529,"tflops":39.094819}
+{"test":"cublas_gemm_f16_f32acc","n":4096,"batch":6,"operations":30,"ms_per_gemm":3.514806,"tflops":39.102852}
+{"summary":"cublas_gemm_f16_f32acc","n":4096,"median_ms":3.515529,"median_tflops":39.094819,"min_tflops":39.084371,"max_tflops":39.102852,"checked_outputs":4,"max_abs_error":0.0}
+{"phase":"warmup","n":8192,"operations":73,"elapsed_s":2.004208}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":0,"operations":30,"ms_per_gemm":27.441284,"tflops":40.067791}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":1,"operations":30,"ms_per_gemm":27.466231,"tflops":40.031398}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":2,"operations":30,"ms_per_gemm":27.615853,"tflops":39.814509}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":3,"operations":30,"ms_per_gemm":27.605129,"tflops":39.829976}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":4,"operations":30,"ms_per_gemm":27.605998,"tflops":39.828723}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":5,"operations":30,"ms_per_gemm":27.603284,"tflops":39.832639}
+{"test":"cublas_gemm_f16_f32acc","n":8192,"batch":6,"operations":30,"ms_per_gemm":27.602301,"tflops":39.834057}
+{"summary":"cublas_gemm_f16_f32acc","n":8192,"median_ms":27.603284,"median_tflops":39.832639,"min_tflops":39.814509,"max_tflops":40.067791,"checked_outputs":4,"max_abs_error":0.0}
